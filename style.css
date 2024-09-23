@@ -1,0 +1,57 @@
+/* Versos */
+
+p.verso {
+  color: blue;
+}
+
+p.mote {
+  color: red;
+}
+
+/* Imagem */
+
+div .poeta {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+
+  padding: 5px;
+  margin: 15px;
+}
+
+/* Link */
+
+a.link:hover {
+  background-color: yellow;
+}
+
+a.link:visited {
+  color: green;
+}
+
+/* Tabela */
+
+.mytable {
+  margin-top: 10px;
+  width: 250px;
+  border-collapse: collapse;
+  font-family: Arial;
+}
+
+.mytable td,
+.mytable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin: 2px;
+}
+
+.mytable tr:hover {
+  background-color: #ddd;
+}
+
+.myheaders {
+  background-color: cyan;
+  text-align: center;
+  color: white;
+}
