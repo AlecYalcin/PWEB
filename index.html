@@ -1,41 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cervejas</title>
+    <title>Cervejas 2</title>
 
     <style>
-      #Cerveja {
-        width: 500px;
-        height: 50px;
-        opacity: 0;
-        transition: opacity 2s ease-in-out;
+      table {
+        border: 2px solid black;
+      }
+
+      .cerveja {
+        width: 350px;
+        height: 80px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #101;
+        color: #ffff;
+        border: 1px solid black;
+        margin-bottom: 1px;
       }
     </style>
   </head>
   <body>
-    <div id="Cerveja"></div>
-
     <div>
+      <table>
+        <tr>
+          <th>Nome</th>
+        </tr>
+        <tr id="CervejaPai"></tr>
+      </table>
       <button id="Botao">Carregando cervejas...</button>
+      <button id="Crescente">Ordenar Cerveja Crescente</button>
+      <button id="Decrescente">Ordenar Cerveja Decrescenter</button>
+      <button id="Embaralhar">Embaralhar Cervejas</button>
     </div>
   </body>
 
   <script>
-    function toggleDiv() {
-      let div = document.querySelector("#Cerveja");
+    let cervejas = ["Guiness", "Desperados", "Becks"];
 
-      if (div.innerHTML == "") {
-        div.innerHTML = `<h1>Guiness!</h1>`;
-        div.style.opacity = 1;
-      } else {
-        div.innerHTML = "";
-        div.style.opacity = 0;
-      }
+    function transform(item) {
+      return `<div class="cerveja">${item}</div>`;
     }
 
-    let button = document.querySelector("#Botao");
-    button.addEventListener("click", toggleDiv);
+    function carregarDiv() {
+      let div = document.getElementById("CervejaPai");
+      let cervejasHtml = cervejas.map(transform);
+      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
+    }
+
+    let botao = document.getElementById("Botao");
+    botao.addEventListener("click", carregarDiv);
+
+    let crescent_b = document.querySelector("#Crescente");
+    crescent_b.addEventListener("click", () => {
+      let div = document.getElementById("CervejaPai");
+      let cervejasHtml = cervejas.sort().map(transform);
+      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
+    });
+
+    let decrescent_b = document.querySelector("#Decrescente");
+    decrescent_b.addEventListener("click", () => {
+      let div = document.getElementById("CervejaPai");
+      let cervejasHtml = cervejas.sort().reverse().map(transform);
+      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
+    });
+
+    let shuffle_b = document.querySelector("#Embaralhar");
+    shuffle_b.addEventListener("click", () => {
+      let div = document.getElementById("CervejaPai");
+      let cervejasHtml = cervejas.sort(() => Math.random() - 0.5).map(transform);
+      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
+    });
   </script>
 </html>
