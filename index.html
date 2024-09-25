@@ -1,45 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trovas</title>
+    <title>Cervejas</title>
 
-    <link href="style.css" rel="stylesheet" />
+    <style>
+      #Cerveja {
+        width: 500px;
+        height: 50px;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <p class="verso">Já não tenho meus dentes natuarais</p>
-    <p class="verso">Que comi rapadura com biscoito</p>
-    <p class="verso">Cadê minha pressão 12 por 8</p>
-    <p class="verso">Que no peito não tá batendo mais</p>
-    <p class="verso">Dou um passo pra frente e dois pra trás</p>
-    <p class="verso">E assim mesmo com pouca habilidade</p>
-    <p class="verso">Que as feridas deixadas pela idade</p>
-    <p class="verso">Não se curam com pano de compressa</p>
-    <p class="mote">Vi a vida passando tão depressa</p>
-    <p class="mote">Que nem lembro que tive mocidade</p>
-    <br />
+    <div id="Cerveja"></div>
 
     <div>
-      <img class="poeta" src="joao_paraibano.png" alt="avatar_joaoparaibano" />
+      <button id="Botao">Carregando cervejas...</button>
     </div>
-
-    <br />
-    <a class="link" href="https://www.google.com/search?q=jo%C3%A3o+paraibano" target="_blank">João Paraibano</a>
-
-    <table class="mytable">
-      <tr class="myheaders">
-        <th>Bebida</th>
-        <th>Valor</th>
-      </tr>
-      <tr>
-        <td><a target="_blank" href="https://mineracaosustentavel.org.br/agua/">Água</a></td>
-        <td>R$2.00</td>
-      </tr>
-      <tr>
-        <td><a target="_blank" href="https://andina.nasuacasa.coca-cola.com.br/coca-cola-original-lata-350ml/p">Coca-cola 350ml</a></td>
-        <td>R$3.50</td>
-      </tr>
-    </table>
   </body>
+
+  <script>
+    function toggleDiv() {
+      let div = document.querySelector("#Cerveja");
+
+      if (div.innerHTML == "") {
+        div.innerHTML = `<h1>Guiness!</h1>`;
+        div.style.opacity = 1;
+      } else {
+        div.innerHTML = "";
+        div.style.opacity = 0;
+      }
+    }
+
+    let button = document.querySelector("#Botao");
+    button.addEventListener("click", toggleDiv);
+  </script>
 </html>
