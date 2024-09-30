@@ -4,22 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cervejas 3</title>
+
+    <style>
+      table {
+        border: 2px solid black;
+      }
+
+      .Refrigerante {
+        width: 350px;
+        height: 80px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: deepskyblue;
+        color: #ffff;
+        border: 1px solid black;
+        margin-bottom: 1px;
+      }
+    </style>
   </head>
   <body>
-    <div><button id="Botao">Carregando cervejas...</button></div>
-
-    <div id="CervejaPai"></div>
+    <div>
+      <table>
+        <tr>
+          <th>Nome</th>
+        </tr>
+        <tr id="RefrigerantePai"></tr>
+      </table>
+      <button id="Botao">Carregando Refrigerantes...</button>
+      <button id="Crescente">Ordenar Refrigerante Crescente</button>
+      <button id="Decrescente">Ordenar Refrigerante Decrescenter</button>
+      <button id="Embaralhar">Embaralhar Refrigerantes</button>
+    </div>
   </body>
 
   <script>
-    let cervejas = ["Guiness", "Desperados", "Becks"];
+    let Refrigerantes = ["Coca-cola", "Pepsi", "Sprite", "Fanta Laranja", "Fanta Uva", "Guaraná", "Dr Pepper"];
+
+    const transform = (item) => `<div class="Refrigerante">${item}</div>`;
+
     const carregarDiv = (cervs) => {
-      const div = document.getElementById("CervejaPai");
-      const cervejasHtml = cervs.map((item) => `<div class="cerveja">${item}</div>`);
-      div.innerHTML = `<h1>${cervejasHtml.join("\n")}</h1>`;
+      const div = document.getElementById("RefrigerantePai");
+      const RefrigerantesHtml = cervs.map((item) => `<div class="Refrigerante">${item}</div>`);
+      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
     };
 
-    let botao = document.getElementById("Botao");
-    botao.addEventListener("click", () => carregarDiv(cervejas));
+    const sortDiv = (cervs) => {
+      const div = document.getElementById("RefrigerantePai");
+      const RefrigerantesHtml = cervs.sort().map(transform);
+      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
+    };
+
+    const decrescentDiv = (cervs) => {
+      const div = document.getElementById("RefrigerantePai");
+      const RefrigerantesHtml = cervs.sort().reverse().map(transform);
+      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
+    };
+
+    const shuffleDiv = (cervs) => {
+      const div = document.getElementById("RefrigerantePai");
+      const RefrigerantesHtml = Refrigerantes.sort(() => Math.random() - 0.5).map(transform);
+      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
+    };
+
+    const botao = document.getElementById("Botao");
+    botao.addEventListener("click", () => carregarDiv(Refrigerantes));
+
+    let crescent_b = document.querySelector("#Crescente");
+    crescent_b.addEventListener("click", () => sortDiv(Refrigerantes));
+
+    const decrescent_b = document.querySelector("#Decrescente");
+    decrescent_b.addEventListener("click", () => decrescentDiv(Refrigerantes));
+
+    const shuffle_b = document.querySelector("#Embaralhar");
+    shuffle_b.addEventListener("click", () => shuffleDiv(Refrigerantes));
   </script>
 </html>
