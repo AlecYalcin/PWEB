@@ -3,78 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cervejas 2</title>
-
-    <style>
-      table {
-        border: 2px solid black;
-      }
-
-      .cerveja {
-        width: 350px;
-        height: 80px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background-color: #101;
-        color: #ffff;
-        border: 1px solid black;
-        margin-bottom: 1px;
-      }
-    </style>
+    <title>Cervejas 3</title>
   </head>
   <body>
-    <div>
-      <table>
-        <tr>
-          <th>Nome</th>
-        </tr>
-        <tr id="CervejaPai"></tr>
-      </table>
-      <button id="Botao">Carregando cervejas...</button>
-      <button id="Crescente">Ordenar Cerveja Crescente</button>
-      <button id="Decrescente">Ordenar Cerveja Decrescenter</button>
-      <button id="Embaralhar">Embaralhar Cervejas</button>
-    </div>
+    <div><button id="Botao">Carregando cervejas...</button></div>
+
+    <div id="CervejaPai"></div>
   </body>
 
   <script>
     let cervejas = ["Guiness", "Desperados", "Becks"];
-
-    function transform(item) {
-      return `<div class="cerveja">${item}</div>`;
-    }
-
-    function carregarDiv() {
-      let div = document.getElementById("CervejaPai");
-      let cervejasHtml = cervejas.map(transform);
-      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
-    }
+    const carregarDiv = (cervs) => {
+      const div = document.getElementById("CervejaPai");
+      const cervejasHtml = cervs.map((item) => `<div class="cerveja">${item}</div>`);
+      div.innerHTML = `<h1>${cervejasHtml.join("\n")}</h1>`;
+    };
 
     let botao = document.getElementById("Botao");
-    botao.addEventListener("click", carregarDiv);
-
-    let crescent_b = document.querySelector("#Crescente");
-    crescent_b.addEventListener("click", () => {
-      let div = document.getElementById("CervejaPai");
-      let cervejasHtml = cervejas.sort().map(transform);
-      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
-    });
-
-    let decrescent_b = document.querySelector("#Decrescente");
-    decrescent_b.addEventListener("click", () => {
-      let div = document.getElementById("CervejaPai");
-      let cervejasHtml = cervejas.sort().reverse().map(transform);
-      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
-    });
-
-    let shuffle_b = document.querySelector("#Embaralhar");
-    shuffle_b.addEventListener("click", () => {
-      let div = document.getElementById("CervejaPai");
-      let cervejasHtml = cervejas.sort(() => Math.random() - 0.5).map(transform);
-      div.innerHTML = `<td>${cervejasHtml.join("\n")}</td>`;
-    });
+    botao.addEventListener("click", () => carregarDiv(cervejas));
   </script>
 </html>
