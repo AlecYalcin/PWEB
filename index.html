@@ -1,79 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cervejas 4</title>
-
-    <style>
-      table {
-        border: 2px solid black;
-      }
-
-      .Refrigerante {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background-color: deepskyblue;
-        color: #ffff;
-      }
-    </style>
+    <title>cervejas 5</title>
+    <script src="table.js"></script>
   </head>
+
   <body>
     <div>
-      <table>
-        <tr id="tabelaHeader"></tr>
-        <tbody id="tabelaCorpo"></tbody>
+      <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
+    <div id="cervejasDiv">
+      <table style="border: 2px solid black">
+        <tr id="header"></tr>
+        <tbody id="body"></tbody>
       </table>
-      <button id="Botao">Carregando Refrigerantes...</button>
     </div>
   </body>
 
   <script>
-    const Refrigerantes = [
-      { name: "Coca-cola", rating: 8, tamanho: "1L" },
-      { name: "Pepsi", rating: 5, tamanho: "330ml" },
-      { name: "Sprite", rating: 10, tamanho: "220ml" },
-      { name: "Fanta Laranja", rating: 7, tamanho: "1L" },
-      { name: "Fanta Uva", rating: 7.5, tamanho: "600ml" },
-      { name: "Guaraná", rating: 9.5, tamanho: "600ml" },
-      { name: "Dr Pepper", rating: 6, tamanho: "330ml" },
-      { name: "Fanta Guaraná", rating: 4, tamanho: "1L" },
-    ];
+    let cervejas = [];
 
-    const Headers = ["Refrigerante", "Avaliação", "Tamanho"];
-
-    let load = false;
-
-    const transform = (atribute) => `<p class="Refrigerante">${atribute}</p>`;
-
-    const carregarDiv = (tableName = "tabelaCorpo", tableHeader = "tabelaHeader", list = Refrigerantes, headers = Headers) => {
-      const tabelaHeader = document.getElementById(tableHeader);
-      headers.forEach((header) => {
-        th = document.createElement("th");
-        th.innerHTML = header;
-        tabelaHeader.appendChild(th);
-      });
-
-      const tabelaCorpo = document.getElementById(tableName);
-      list.forEach((item) => {
-        const tr = document.createElement("tr");
-        for (let key in item) {
-          const tdAtribute = document.createElement("td");
-          tdAtribute.innerHTML = transform(item[key]);
-          tr.appendChild(tdAtribute);
-        }
-        tabelaCorpo.appendChild(tr);
-      });
-    };
-
-    const botao = document.getElementById("Botao");
-    botao.addEventListener("click", () => {
-      if (!load) {
-        carregarDiv();
-        load = !load;
+    async function carregarCervejas() {
+      try {
+        let res = await fetch("https://random-data-api.com/api/v2/beers?size=3");
+        cervejas = await res.json();
+        loadTable(cervejas);
+      } catch (error) {
+        document.getElementById("cervejasDiv").innerHTML = "Não foi possível carregar.";
       }
-    });
+    }
+
+    let botao = document.getElementById("botaoCarregar");
+    botao.addEventListener("click", carregarCervejas);
   </script>
 </html>
