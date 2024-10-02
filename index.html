@@ -23,10 +23,7 @@
   <body>
     <div>
       <table>
-        <tr>
-          <th>Nome</th>
-          <th>Avaliação</th>
-        </tr>
+        <tr id="tabelaHeader"></tr>
         <tbody id="tabelaCorpo"></tbody>
       </table>
       <button id="Botao">Carregando Refrigerantes...</button>
@@ -35,37 +32,38 @@
 
   <script>
     const Refrigerantes = [
-      { name: "Coca-cola", rating: 8 },
-      { name: "Pepsi", rating: 5 },
-      { name: "Sprite", rating: 10 },
-      { name: "Fanta Laranja", rating: 7 },
-      { name: "Fanta Uva", rating: 7.5 },
-      { name: "Guaraná", rating: 9.5 },
-      { name: "Dr Pepper", rating: 6 },
+      { name: "Coca-cola", rating: 8, tamanho: "1L" },
+      { name: "Pepsi", rating: 5, tamanho: "330ml" },
+      { name: "Sprite", rating: 10, tamanho: "220ml" },
+      { name: "Fanta Laranja", rating: 7, tamanho: "1L" },
+      { name: "Fanta Uva", rating: 7.5, tamanho: "600ml" },
+      { name: "Guaraná", rating: 9.5, tamanho: "600ml" },
+      { name: "Dr Pepper", rating: 6, tamanho: "330ml" },
+      { name: "Fanta Guaraná", rating: 4, tamanho: "1L" },
     ];
+
+    const Headers = ["Refrigerante", "Avaliação", "Tamanho"];
 
     let load = false;
 
-    const transform_name = ({ name }) => `<p class="Refrigerante">${name}</p>`;
-    const transform_rating = ({ rating }) => `<p class="Refrigerante">${rating}</p>`;
+    const transform = (atribute) => `<p class="Refrigerante">${atribute}</p>`;
 
-    const carregarDiv = (cervs) => {
-      const tabelaCorpo = document.getElementById("tabelaCorpo");
+    const carregarDiv = (tableName = "tabelaCorpo", tableHeader = "tabelaHeader", list = Refrigerantes, headers = Headers) => {
+      const tabelaHeader = document.getElementById(tableHeader);
+      headers.forEach((header) => {
+        th = document.createElement("th");
+        th.innerHTML = header;
+        tabelaHeader.appendChild(th);
+      });
 
-      cervs.forEach((cerv) => {
+      const tabelaCorpo = document.getElementById(tableName);
+      list.forEach((item) => {
         const tr = document.createElement("tr");
-
-        // Cria e insere o <td> para o nome
-        const tdNome = document.createElement("td");
-        tdNome.innerHTML = transform_name(cerv);
-        tr.appendChild(tdNome);
-
-        // Cria e insere o <td> para o rating
-        const tdRating = document.createElement("td");
-        tdRating.innerHTML = transform_rating(cerv);
-        tr.appendChild(tdRating);
-
-        // Adiciona a linha <tr> à tabela
+        for (let key in item) {
+          const tdAtribute = document.createElement("td");
+          tdAtribute.innerHTML = transform(item[key]);
+          tr.appendChild(tdAtribute);
+        }
         tabelaCorpo.appendChild(tr);
       });
     };
@@ -73,9 +71,9 @@
     const botao = document.getElementById("Botao");
     botao.addEventListener("click", () => {
       if (!load) {
-        carregarDiv(Refrigerantes);
+        carregarDiv();
+        load = !load;
       }
-      load = !load;
     });
   </script>
 </html>
