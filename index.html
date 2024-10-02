@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cervejas 3</title>
+    <title>Cervejas 4</title>
 
     <style>
       table {
@@ -11,17 +11,12 @@
       }
 
       .Refrigerante {
-        width: 350px;
-        height: 80px;
-
         display: flex;
         justify-content: center;
         align-items: center;
 
         background-color: deepskyblue;
         color: #ffff;
-        border: 1px solid black;
-        margin-bottom: 1px;
       }
     </style>
   </head>
@@ -30,55 +25,57 @@
       <table>
         <tr>
           <th>Nome</th>
+          <th>Avaliação</th>
         </tr>
-        <tr id="RefrigerantePai"></tr>
+        <tbody id="tabelaCorpo"></tbody>
       </table>
       <button id="Botao">Carregando Refrigerantes...</button>
-      <button id="Crescente">Ordenar Refrigerante Crescente</button>
-      <button id="Decrescente">Ordenar Refrigerante Decrescenter</button>
-      <button id="Embaralhar">Embaralhar Refrigerantes</button>
     </div>
   </body>
 
   <script>
-    let Refrigerantes = ["Coca-cola", "Pepsi", "Sprite", "Fanta Laranja", "Fanta Uva", "Guaraná", "Dr Pepper"];
+    const Refrigerantes = [
+      { name: "Coca-cola", rating: 8 },
+      { name: "Pepsi", rating: 5 },
+      { name: "Sprite", rating: 10 },
+      { name: "Fanta Laranja", rating: 7 },
+      { name: "Fanta Uva", rating: 7.5 },
+      { name: "Guaraná", rating: 9.5 },
+      { name: "Dr Pepper", rating: 6 },
+    ];
 
-    const transform = (item) => `<div class="Refrigerante">${item}</div>`;
+    let load = false;
+
+    const transform_name = ({ name }) => `<p class="Refrigerante">${name}</p>`;
+    const transform_rating = ({ rating }) => `<p class="Refrigerante">${rating}</p>`;
 
     const carregarDiv = (cervs) => {
-      const div = document.getElementById("RefrigerantePai");
-      const RefrigerantesHtml = cervs.map((item) => `<div class="Refrigerante">${item}</div>`);
-      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
-    };
+      const tabelaCorpo = document.getElementById("tabelaCorpo");
 
-    const sortDiv = (cervs) => {
-      const div = document.getElementById("RefrigerantePai");
-      const RefrigerantesHtml = cervs.sort().map(transform);
-      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
-    };
+      cervs.forEach((cerv) => {
+        const tr = document.createElement("tr");
 
-    const decrescentDiv = (cervs) => {
-      const div = document.getElementById("RefrigerantePai");
-      const RefrigerantesHtml = cervs.sort().reverse().map(transform);
-      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
-    };
+        // Cria e insere o <td> para o nome
+        const tdNome = document.createElement("td");
+        tdNome.innerHTML = transform_name(cerv);
+        tr.appendChild(tdNome);
 
-    const shuffleDiv = (cervs) => {
-      const div = document.getElementById("RefrigerantePai");
-      const RefrigerantesHtml = Refrigerantes.sort(() => Math.random() - 0.5).map(transform);
-      div.innerHTML = `<td>${RefrigerantesHtml.join("\n")}</td>`;
+        // Cria e insere o <td> para o rating
+        const tdRating = document.createElement("td");
+        tdRating.innerHTML = transform_rating(cerv);
+        tr.appendChild(tdRating);
+
+        // Adiciona a linha <tr> à tabela
+        tabelaCorpo.appendChild(tr);
+      });
     };
 
     const botao = document.getElementById("Botao");
-    botao.addEventListener("click", () => carregarDiv(Refrigerantes));
-
-    let crescent_b = document.querySelector("#Crescente");
-    crescent_b.addEventListener("click", () => sortDiv(Refrigerantes));
-
-    const decrescent_b = document.querySelector("#Decrescente");
-    decrescent_b.addEventListener("click", () => decrescentDiv(Refrigerantes));
-
-    const shuffle_b = document.querySelector("#Embaralhar");
-    shuffle_b.addEventListener("click", () => shuffleDiv(Refrigerantes));
+    botao.addEventListener("click", () => {
+      if (!load) {
+        carregarDiv(Refrigerantes);
+      }
+      load = !load;
+    });
   </script>
 </html>

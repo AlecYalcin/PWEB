@@ -9,3 +9,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 3       | Javascript Básico              | 25/09/2024 |
 | 4       | Javascript Básico 2            | 25/09/2024 |
 | 5       | Arrow e Callback Functions     | 30/09/2024 |
+| 6       | Objetos Json                   | 30/09/2024 |
