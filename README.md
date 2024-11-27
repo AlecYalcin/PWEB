@@ -13,3 +13,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 7       | Fução Fetch                    | 02/10/2024 |
 | 8       | Promisses                      | ??/10/2024 |
 | 9       | Iniciação ao React             | 27/11/2024 |
+| 10      | Iniciação ao JSX               | 27/11/2024 |
