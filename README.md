@@ -11,3 +11,5 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 5       | Arrow e Callback Functions     | 30/09/2024 |
 | 6       | Objetos Json                   | 30/09/2024 |
 | 7       | Fução Fetch                    | 02/10/2024 |
+| 8       | Promisses                      | ??/10/2024 |
+| 9       | Iniciação ao React             | 27/11/2024 |

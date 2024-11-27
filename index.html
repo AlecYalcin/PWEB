@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Cervejas 6</title>
+    <title>ReactZero</title>
   </head>
+
   <body>
-    <div>
-      <button id="botaoCarregar">Carregar cervejas</button>
-    </div>
-    <div id="message"></div>
-    <div id="cervejasDiv">
-      <table style="border: 2px solid black">
-        <thead>
-          <tr id="table-head"></tr>
-        </thead>
-        <tbody id="body"></tbody>
-      </table>
-    </div>
+    <div id="app"></div>
+
+    <!-- Biblioteca React -->
+    <script src="libs/react.js"></script>
+
+    <!-- Biblioteca React-Dom -->
+    <script src="libs/react-dom.js"></script>
+
+    <!-- Script -->
+    <script>
+      ReactDOM.render(
+        React.createElement(
+          "div",
+          null,
+          React.createElement("h1", null, "Primeira Tabela em React!"),
+          React.createElement(
+            "table",
+            { border: "2px solid black", width: "200px", height: "50px" },
+            React.createElement("tr", null, React.createElement("th", null, "Nome"), React.createElement("th", null, "Idade")),
+            React.createElement("tr", null, React.createElement("th", null, "Jeferson"), React.createElement("th", null, "17")),
+            React.createElement("tr", null, React.createElement("th", null, "Amanda"), React.createElement("th", null, "23"))
+          )
+        ),
+        document.getElementById("app")
+      );
+    </script>
   </body>
-  <script defer src="table.js"></script>
 </html>
