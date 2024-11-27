@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>ReactZero</title>
+    <title>ReactOne</title>
   </head>
 
   <body>
@@ -14,21 +14,51 @@
     <!-- Biblioteca React-Dom -->
     <script src="libs/react-dom.js"></script>
 
+    <!-- Biblioteca Babel -->
+    <script src="libs/babel.js"></script>
+
     <!-- Script -->
-    <script>
+    <script type="text/babel">
+      const bebidas = [
+        { nome: "Gilson Santos", idade: 56 },
+        { nome: "Marcos Aurélio", idade: 97 },
+        { nome: "Fabrício Vale", idade: 47 },
+      ];
+
+      const Cabecalho = () => {
+        return <h1>Minha tabela de Pessoas</h1>;
+      };
+
+      const TabelaBebidas = () => {
+        return (
+          <div id="tabelaBebidas">
+            <table id="tabela" border="1" width="300" height="50" textCenter="true">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Idade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bebidas.map((pessoa, index) => {
+                  return (
+                    <tr>
+                      <td>{pessoa.nome}</td>
+                      <td>{pessoa.idade}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
+      };
+
       ReactDOM.render(
-        React.createElement(
-          "div",
-          null,
-          React.createElement("h1", null, "Primeira Tabela em React!"),
-          React.createElement(
-            "table",
-            { border: "2px solid black", width: "200px", height: "50px" },
-            React.createElement("tr", null, React.createElement("th", null, "Nome"), React.createElement("th", null, "Idade")),
-            React.createElement("tr", null, React.createElement("th", null, "Jeferson"), React.createElement("th", null, "17")),
-            React.createElement("tr", null, React.createElement("th", null, "Amanda"), React.createElement("th", null, "23"))
-          )
-        ),
+        <div id="app">
+          <Cabecalho />
+          <TabelaBebidas />
+        </div>,
         document.getElementById("app")
       );
     </script>
