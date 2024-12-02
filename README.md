@@ -14,3 +14,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 8       | Promisses                      | ??/10/2024 |
 | 9       | Iniciação ao React             | 27/11/2024 |
 | 10      | Iniciação ao JSX               | 27/11/2024 |
+| 11      | Componentes de Classe React    | 02/11/2024 |

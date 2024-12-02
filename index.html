@@ -32,7 +32,7 @@
       const TabelaBebidas = () => {
         return (
           <div id="tabelaBebidas">
-            <table id="tabela" border="1" width="300" height="50" textCenter="true">
+            <table id="tabela" border="1" width="300" height="50">
               <thead>
                 <tr>
                   <th>Nome</th>
@@ -54,10 +54,60 @@
         );
       };
 
+      class TabelaBebidas2 extends React.Component {
+        bebidas2 = [
+          { nome: "Gilson Santos", idade: 56 },
+          { nome: "Marcos Aurélio", idade: 97 },
+          { nome: "Fabrício Vale", idade: 47 },
+        ];
+
+        render() {
+          return (
+            <div id="tabelaBebidas">
+              <h1>{this.props.title}</h1>
+              <table id="tabela" border="1" width="300" height="50">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.bebidas2.map((pessoa, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{pessoa.nome}</td>
+                        <td>{pessoa.idade}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+      }
+
+      class Botao extends React.Component {
+        alertClicker() {
+          alert("Você clicou no botão!");
+        }
+
+        render() {
+          return (
+            <div>
+              <button id="Botao" onClick={this.alertClicker}>
+                Clique aqui!
+              </button>
+            </div>
+          );
+        }
+      }
+
       ReactDOM.render(
         <div id="app">
-          <Cabecalho />
-          <TabelaBebidas />
+          <TabelaBebidas2 title="Minha tabela de Pessoas" />
+          <Botao />
         </div>,
         document.getElementById("app")
       );
