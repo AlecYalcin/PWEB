@@ -19,30 +19,26 @@
 
     <!-- Script -->
     <script type="text/babel">
-      const bebidas = [
-        { nome: "Gilson Santos", idade: 56 },
-        { nome: "Marcos Aurélio", idade: 97 },
-        { nome: "Fabrício Vale", idade: 47 },
-      ];
-
       const Cabecalho = () => {
         return <h1>Minha tabela de Pessoas</h1>;
       };
 
-      const TabelaBebidas = () => {
+      const TabelaBebidas = ({ cabeçalhos, conteudo }) => {
         return (
           <div id="tabelaBebidas">
+            <Cabecalho />
             <table id="tabela" border="1" width="300" height="50">
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Idade</th>
+                  {cabeçalhos.map((cabeçalho, index) => {
+                    return <th key={index}>{cabeçalho}</th>;
+                  })}
                 </tr>
               </thead>
               <tbody>
-                {bebidas.map((pessoa, index) => {
+                {conteudo.map((pessoa, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{pessoa.nome}</td>
                       <td>{pessoa.idade}</td>
                     </tr>
@@ -54,60 +50,33 @@
         );
       };
 
-      class TabelaBebidas2 extends React.Component {
-        bebidas2 = [
-          { nome: "Gilson Santos", idade: 56 },
-          { nome: "Marcos Aurélio", idade: 97 },
-          { nome: "Fabrício Vale", idade: 47 },
-        ];
-
-        render() {
-          return (
-            <div id="tabelaBebidas">
-              <h1>{this.props.title}</h1>
-              <table id="tabela" border="1" width="300" height="50">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.bebidas2.map((pessoa, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{pessoa.nome}</td>
-                        <td>{pessoa.idade}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-      }
-
-      class Botao extends React.Component {
-        alertClicker() {
-          alert("Você clicou no botão!");
-        }
-
-        render() {
-          return (
-            <div>
-              <button id="Botao" onClick={this.alertClicker}>
-                Clique aqui!
-              </button>
-            </div>
-          );
-        }
-      }
+      const listaCabecalho = ["Nome", "Idade"];
+      const listaPessoas = [
+        { nome: "Gilson Santos", idade: 56 },
+        { nome: "Marcos Aurélio", idade: 97 },
+        { nome: "Fabrício Vale", idade: 47 },
+        { nome: "Ana Beatriz", idade: 34 },
+        { nome: "Carlos Henrique", idade: 28 },
+        { nome: "Fernanda Silva", idade: 23 },
+        { nome: "Roberto Oliveira", idade: 67 },
+        { nome: "Juliana Castro", idade: 41 },
+        { nome: "Paulo Ricardo", idade: 53 },
+        { nome: "Larissa Mendes", idade: 19 },
+        { nome: "Diego Martins", idade: 35 },
+        { nome: "Carolina Almeida", idade: 46 },
+        { nome: "Vinícius Monteiro", idade: 38 },
+        { nome: "Amanda Costa", idade: 25 },
+        { nome: "Ricardo Pereira", idade: 62 },
+        { nome: "Letícia Santos", idade: 29 },
+        { nome: "Luiz Antônio", idade: 50 },
+        { nome: "Patrícia Moreira", idade: 40 },
+        { nome: "João Pedro", idade: 33 },
+        { nome: "Camila Rodrigues", idade: 22 },
+      ];
 
       ReactDOM.render(
         <div id="app">
-          <TabelaBebidas2 title="Minha tabela de Pessoas" />
-          <Botao />
+          <TabelaBebidas cabeçalhos={listaCabecalho} conteudo={listaPessoas} />
         </div>,
         document.getElementById("app")
       );
