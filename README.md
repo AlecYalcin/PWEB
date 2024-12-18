@@ -17,3 +17,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 11      | Componentes de Classe React    | 02/12/2024 |
 | 12      | Desestruturação                | 09/12/2024 |
 | 13      | Iniciação ao Next.js           | 11/12/2024 |
+| 14      | Iniciação ao Next.js 2         | 18/12/2024 |
