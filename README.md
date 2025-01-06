@@ -18,3 +18,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 12      | Desestruturação                | 09/12/2024 |
 | 13      | Iniciação ao Next.js           | 11/12/2024 |
 | 14      | Iniciação ao Next.js 2         | 18/12/2024 |
+| 15      | Data Fetching #01              | 06/01/2025 |
