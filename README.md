@@ -22,3 +22,4 @@ Nesse repositório estão apenas as atividades desenvolvidas ao longo das aulas.
 | 16      | Formulários                      | 08/01/2025 |
 | 17      | Data Fetching e Client Component | 13/01/2025 |
 | 18      | Implementação de API             | 19/01/2025 |
+| 19      | Server Actions                   | 19/01/2025 |

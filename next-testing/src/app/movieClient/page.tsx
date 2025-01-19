@@ -1,5 +1,6 @@
 "use client";
 
+import { searchMovies } from "../actions/movieActions";
 import Form from "next/form";
 import { useState } from "react";
 
@@ -7,17 +8,12 @@ export default function Home() {
   //  Resultados dos filmes
   const [resultMovies, setResultMovies] = useState([]);
 
-  // URL da API com API_KEY
-  const URL = `http://www.omdbapi.com/?apikey=be544378`;
-
   const handleAction = async (formData: any) => {
     // Requisição
-    const title = formData.get("title");
-    const httpRes = await fetch(`${URL}&s=${title}`);
-    const jsonRes = await httpRes.json();
+    const res = await searchMovies(formData);
 
-    // Alterando dados
-    setResultMovies(jsonRes.Search || []);
+    if (res.error) setResultMovies([]);
+    else setResultMovies(res.Search);
   };
 
   return (
